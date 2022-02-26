@@ -24,3 +24,9 @@ def playerHasgivesnowball(playerRect, baddies):
             return True
     return False
 
+
+def playerHashitstone(playerRect, baddies):
+    for b in baddies:
+        if playerRect.colliderect(b['rect']):
+            return True
+    return False
