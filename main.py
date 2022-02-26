@@ -34,8 +34,8 @@ def playerHashitstone(playerRect, stone):
 
 if __name__ == '__main__':
     pygame.init()
-    WindowWidth, WindowHeight = 1000, 600
-    screen = pygame.display.set_mode((WindowWidth, WindowHeight))
+    WINDOWWIDTH, WINDOWHEIGHT = 1000, 600
+    screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     pygame.display.set_caption('Снежный ком')
     pygame.mouse.set_visible(False)
 
@@ -49,9 +49,12 @@ if __name__ == '__main__':
     #  Image
     playerImage = pygame.image.load('Image/character.png')
     playerRect = playerImage.get_rect()
-    snowballImage = pygame.image.load('snow-ball.png')
-    backgraudImage = pygame.image.load("Image/background.jpg")
+    snowballImage = pygame.image.load('Image/snow-ball.png')
+    backgraudImage = pygame.image.load("Image/background.jpg").convert()
+    backgraudImage = pygame.transform.smoothscale(backgraudImage, screen.get_size())
 
+    playerRect.topleft = (WINDOWWIDTH / 2, WINDOWHEIGHT - 50)
+    screen.blit(backgraudImage, (0, 0))
     pygame.display.flip()
     while pygame.event.wait().type != pygame.QUIT:
         pass
