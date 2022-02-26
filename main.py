@@ -18,15 +18,17 @@ def waitForPlayerToPressKey():
             return
 
 
-def playerHasgivesnowball(playerRect, baddies):
-    for b in baddies:
+def playerHasgivesnowball(playerRect, Snowball):
+    for b in Snowball:
         if playerRect.colliderect(b['rect']):
             return True
     return False
 
 
-def playerHashitstone(playerRect, baddies):
-    for b in baddies:
+def playerHashitstone(playerRect, Stone):
+    for b in Stone:
         if playerRect.colliderect(b['rect']):
             return True
     return False
+
+
