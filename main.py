@@ -42,6 +42,10 @@ if __name__ == '__main__':
     # шрифт
     font = pygame.font.SysFont(None, 48)
 
+    # звуки
+    gameOverSound = pygame.mixer.Sound('Sound/zvuki-quotkonets-igryiquot-game-over-sounds-30249.ogg')
+    pygame.mixer.music.load('Sound/Mathias Rehfeldt Dark Matter Projekt - Ice Field.mp4')
+
     pygame.display.flip()
     while pygame.event.wait().type != pygame.QUIT:
         pass
