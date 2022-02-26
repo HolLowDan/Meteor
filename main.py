@@ -32,3 +32,11 @@ def playerHashitstone(playerRect, Stone):
     return False
 
 
+if __name__ == '__main__':
+    pygame.init()
+    WindowWidth, WindowHeight = 1000, 600
+    screen = pygame.display.set_mode((WindowWidth, WindowHeight))
+    pygame.display.flip()
+    while pygame.event.wait().type != pygame.QUIT:
+        pass
+    close_game()
