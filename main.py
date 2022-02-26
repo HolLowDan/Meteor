@@ -7,3 +7,14 @@ def close_game():
     sys.exit()
 
 
+def waitForPlayerToPressKey():
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                close_game()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE: # Нажатие ESC осуществляет выход.
+                    close_game()
+            return
+
+
