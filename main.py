@@ -18,3 +18,9 @@ def waitForPlayerToPressKey():
             return
 
 
+def playerHasgivesnowball(playerRect, baddies):
+    for b in baddies:
+        if playerRect.colliderect(b['rect']):
+            return True
+    return False
+
