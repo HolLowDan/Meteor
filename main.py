@@ -54,8 +54,32 @@ if __name__ == '__main__':
     backgraudImage = pygame.transform.smoothscale(backgraudImage, screen.get_size())
 
     playerRect.topleft = (WINDOWWIDTH / 2, WINDOWHEIGHT - 50)
+    moveLeft = moveRight = False
+    StoneAddCounter = 3
+    SnowballAddCounter = 5
+
+    pygame.mixer.music.play(-1, 0.0)
     screen.blit(backgraudImage, (0, 0))
     pygame.display.flip()
     while pygame.event.wait().type != pygame.QUIT:
-        pass
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                close_game()
+
+            if event.type == KEYDOWN:
+                if event.key == K_LEFT or event.key == ord('a'):
+                    moveRight = False
+                    moveLeft = True
+                if event.key == K_RIGHT or event.key == ord('d'):
+                    moveLeft = False
+                    moveRight = True
+
+            if event.type == KEYUP:
+                if event.key == K_ESCAPE:
+                    close_game()
+
+                if event.key == K_LEFT or event.key == ord('a'):
+                    moveLeft = False
+                if event.key == K_RIGHT or event.key == ord('d'):
+                    moveRight = False
     close_game()
