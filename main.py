@@ -36,6 +36,12 @@ if __name__ == '__main__':
     pygame.init()
     WindowWidth, WindowHeight = 1000, 600
     screen = pygame.display.set_mode((WindowWidth, WindowHeight))
+    pygame.display.set_caption('Снежный ком')
+    pygame.mouse.set_visible(False)
+
+    # шрифт
+    font = pygame.font.SysFont(None, 48)
+
     pygame.display.flip()
     while pygame.event.wait().type != pygame.QUIT:
         pass
