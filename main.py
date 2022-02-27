@@ -40,6 +40,9 @@ if __name__ == '__main__':
     WINDOWWIDTH, WINDOWHEIGHT = 1000, 600
     ROCKMINSIZE, ROCKMAXSIZE = 15, 25
     ROCKMINSPEED, ROCKMAXSPEED = 3, 5
+    ADDNEWROCKRATE = 6
+    rockAddCounter = 0
+    PLAYERMOVERATE = 5
     screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     pygame.display.set_caption('Снежный ком')
     pygame.mouse.set_visible(False)
@@ -66,8 +69,8 @@ if __name__ == '__main__':
 
     pygame.mixer.music.play(-1, 0.0)
     screen.blit(backgraudImage, (0, 0))
-    pygame.display.flip()
-    while pygame.event.wait().type != pygame.QUIT:
+
+    while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 close_game()
@@ -89,26 +92,35 @@ if __name__ == '__main__':
                 if event.key == K_RIGHT or event.key == ord('d'):
                     moveRight = False
 
+        if rockAddCounter == ADDNEWROCKRATE:
+            rockAddCounter = 0
             rockSize = random.randint(ROCKMINSIZE, ROCKMAXSIZE)
-            newRock = {'rect': pygame.Rect(random.randint(0, WINDOWWIDTH - rockSize), 0 - rockSize, rockSize,
-                                             rockSize),
+            newRock = {'rect': pygame.Rect(random.randint(0, WINDOWWIDTH - rockSize), 0 - rockSize, rockSize, rockSize),
                          'speed': random.randint(ROCKMINSPEED, ROCKMAXSPEED),
                          'surface': pygame.transform.scale(rockImage, (rockSize, rockSize)),
-                         }
+                        }
             rock.append(newRock)
+        else:
+            rockAddCounter += 1
 
-            for b in rock:
-                b['rect'].move_ip(0, b['speed'])
+        if moveLeft and playerRect.left > 0:
+            playerRect.move_ip(-1 * PLAYERMOVERATE, 0)
+        if moveRight and playerRect.right < WINDOWWIDTH:
+            playerRect.move_ip(PLAYERMOVERATE, 0)
 
-            for b in rock[:]:
-                if b['rect'].top > WINDOWHEIGHT:
-                    rock.remove(b)
+        for b in rock:
+            b['rect'].move_ip(0, b['speed'])
 
-            for b in rock:
-                screen.blit(b['surface'], b['rect'])
+        for b in rock[:]:
+            if b['rect'].top > WINDOWHEIGHT:
+                rock.remove(b)
 
-            screen.blit(rockImage)
+        for b in rock:
+            screen.blit(b['surface'], b['rect'])
+        screen.blit(playerImage, playerRect)
 
-            pygame.display.update()
-            mainClock.tick(FPS)
-    close_game()
+        if playerHashitrock(playerRect, rock):
+            break
+
+        pygame.display.update()
+        mainClock.tick(FPS)
