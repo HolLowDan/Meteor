@@ -57,3 +57,8 @@ pygame.mouse.set_visible(False)
 
 # Добовляем шрифт
 font = pygame.font.SysFont(None, 48)
+
+
+# Добовляем музыку
+gameOverSound = pygame.mixer.Sound('Sound/zvuki-quotkonets-igryiquot-game-over-sounds-30249.ogg')
+pygame.mixer.music.load('Sound/Mathias Rehfeldt Dark Matter Projekt - Ice Field.mp4')
