@@ -1,20 +1,8 @@
-import pygame
 import random
 import sys
+
+import pygame
 from pygame.locals import *
-
-
-WINDOWWIDTH = 600
-WINDOWHEIGHT = 600
-TEXTCOLOR = (255, 255, 255)
-BACKGROUNDCOLOR = (0, 0, 0)
-FPS = 40
-BADDIEMINSIZE = 10
-BADDIEMAXSIZE = 40
-BADDIEMINSPEED = 1
-BADDIEMAXSPEED = 8
-ADDNEWBADDIERATE = 6
-PLAYERMOVERATE = 5
 
 
 def terminate():
@@ -28,6 +16,33 @@ def waitForPlayerToPressKey():
             if event.type == QUIT:
                 terminate()
             if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:  # кнопка выхода
+                if event.key == K_ESCAPE:  # pressing escape quits
                     terminate()
                 return
+
+
+def playerHasHitRock(playerRect, rock):
+    for b in rock:
+        if playerRect.colliderect(b['rect']):
+            return True
+    return False
+
+
+def drawText(text, font, surface, x, y):
+    textobj = font.render(text, 1, TEXTCOLOR)
+    textrect = textobj.get_rect()
+    textrect.topleft = (x, y)
+    surface.blit(textobj, textrect)
+
+
+WINDOWWIDTH = 1000
+WINDOWHEIGHT = 600
+TEXTCOLOR = (255, 255, 255)
+FPS = 60
+ROCKMINSIZE = 10
+ROCKMAXSIZE = 40
+ROCKMINSPEED = 1
+ROCKMAXSPEED = 8
+ADDNEWROCKRATE = 6
+PLAYERMOVERATE = 5
+
