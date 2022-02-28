@@ -164,3 +164,18 @@ while True:
 
         # подключаем мышь
         pygame.mouse.set_pos(playerRect.centerx, playerRect.centery)
+
+
+        # Движение метеоров учитывая читы
+        for b in rock:
+            if not reverseCheat and not slowCheat:
+                b['rect'].move_ip(0, b['speed'])
+            elif reverseCheat:
+                b['rect'].move_ip(0, -5)
+            elif slowCheat:
+                b['rect'].move_ip(0, 1)
+
+        # удаляем метеоры
+        for b in rock[:]:
+            if b['rect'].top > WINDOWHEIGHT:
+                rock.remove(b)
