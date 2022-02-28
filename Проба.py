@@ -137,3 +137,17 @@ while True:
             if event.type == MOUSEMOTION:
                 # Можно управлять курсором мышки
                 playerRect.move_ip(event.pos[0] - playerRect.centerx, event.pos[1] - playerRect.centery)
+
+        # добовляем новые метеоры
+        if not reverseCheat and not slowCheat:
+            rockAddCounter += 1
+        if rockAddCounter == ADDNEWROCKRATE:
+            rockAddCounter = 0
+            baddieSize = random.randint(ROCKMINSIZE, ROCKMAXSIZE)
+            newBaddie = {'rect': pygame.Rect(random.randint(0, WINDOWWIDTH - baddieSize), 0 - baddieSize, baddieSize,
+                                             baddieSize),
+                         'speed': random.randint(ROCKMINSPEED, ROCKMAXSPEED),
+                         'surface': pygame.transform.scale(rockImage, (baddieSize, baddieSize)),
+                         }
+
+            rock.append(newBaddie)
