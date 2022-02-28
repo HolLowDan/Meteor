@@ -143,11 +143,24 @@ while True:
             rockAddCounter += 1
         if rockAddCounter == ADDNEWROCKRATE:
             rockAddCounter = 0
-            baddieSize = random.randint(ROCKMINSIZE, ROCKMAXSIZE)
-            newBaddie = {'rect': pygame.Rect(random.randint(0, WINDOWWIDTH - baddieSize), 0 - baddieSize, baddieSize,
-                                             baddieSize),
+            rockSize = random.randint(ROCKMINSIZE, ROCKMAXSIZE)
+            newrock = {'rect': pygame.Rect(random.randint(0, WINDOWWIDTH - rockSize), 0 - rockSize, rockSize,
+                                             rockSize),
                          'speed': random.randint(ROCKMINSPEED, ROCKMAXSPEED),
-                         'surface': pygame.transform.scale(rockImage, (baddieSize, baddieSize)),
+                         'surface': pygame.transform.scale(rockImage, (rockSize, rockSize)),
                          }
 
-            rock.append(newBaddie)
+            rock.append(newrock)
+
+        # движение игорока
+        if moveLeft and playerRect.left > 0:
+            playerRect.move_ip(-1 * PLAYERMOVERATE, 0)
+        if moveRight and playerRect.right < WINDOWWIDTH:
+            playerRect.move_ip(PLAYERMOVERATE, 0)
+        if moveUp and playerRect.top > 0:
+            playerRect.move_ip(0, -1 * PLAYERMOVERATE)
+        if moveDown and playerRect.bottom < WINDOWHEIGHT:
+            playerRect.move_ip(0, PLAYERMOVERATE)
+
+        # подключаем мышь
+        pygame.mouse.set_pos(playerRect.centerx, playerRect.centery)
