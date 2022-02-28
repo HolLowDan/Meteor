@@ -62,3 +62,11 @@ font = pygame.font.SysFont(None, 48)
 # Добовляем музыку
 gameOverSound = pygame.mixer.Sound('Sound/zvuki-quotkonets-igryiquot-game-over-sounds-30249.ogg')
 pygame.mixer.music.load('Sound/Mathias Rehfeldt Dark Matter Projekt - Ice Field.mp4')
+
+
+# Добовляем картинки
+playerImage = pygame.image.load('Image/character.png')
+playerRect = playerImage.get_rect()
+rockImage = pygame.image.load('Image/rock.png')
+backgroudImage = pygame.image.load("Image/background.jpg").convert()
+backgroudImage = pygame.transform.smoothscale(backgroudImage, screen.get_size())
