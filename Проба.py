@@ -20,3 +20,14 @@ PLAYERMOVERATE = 5
 def terminate():
     pygame.quit()
     sys.exit()
+
+
+def waitForPlayerToPressKey():
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                terminate()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:  # кнопка выхода
+                    terminate()
+                return
