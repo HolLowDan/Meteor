@@ -78,3 +78,14 @@ drawText('Нажмите для начала', font, screen, (WINDOWWIDTH / 3) -
 pygame.display.update()
 waitForPlayerToPressKey()
 
+
+topScore = 0
+while True:
+    # начинаем игру
+    rock = []
+    score = 0
+    playerRect.topleft = (WINDOWWIDTH / 2, WINDOWHEIGHT - 100)
+    moveLeft = moveRight = moveUp = moveDown = False
+    reverseCheat = slowCheat = False
+    rockAddCounter = 0
+    pygame.mixer.music.play(-1, 0.0)
