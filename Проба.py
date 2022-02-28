@@ -70,3 +70,11 @@ playerRect = playerImage.get_rect()
 rockImage = pygame.image.load('Image/rock.png')
 backgroudImage = pygame.image.load("Image/background.jpg").convert()
 backgroudImage = pygame.transform.smoothscale(backgroudImage, screen.get_size())
+
+
+# покащываем стартовый экран
+drawText('Метеор', font, screen, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
+drawText('Нажмите для начала', font, screen, (WINDOWWIDTH / 3) - 30, (WINDOWHEIGHT / 3) + 50)
+pygame.display.update()
+waitForPlayerToPressKey()
+
