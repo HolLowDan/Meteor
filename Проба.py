@@ -201,3 +201,14 @@ while True:
                 topScore = score  # выставляем новое значение
             break
         mainClock.tick(FPS)
+
+    # Останавливаем игру и выводим экран проигрыша
+    pygame.mixer.music.stop()
+    gameOverSound.play()
+
+    drawText('GAME OVER', font, screen, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
+    drawText('Press a key to play again.', font, screen, (WINDOWWIDTH / 3) - 80, (WINDOWHEIGHT / 3) + 50)
+    pygame.display.update()
+    waitForPlayerToPressKey()
+
+    gameOverSound.stop()
