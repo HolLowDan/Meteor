@@ -165,7 +165,6 @@ while True:
         # подключаем мышь
         pygame.mouse.set_pos(playerRect.centerx, playerRect.centery)
 
-
         # Движение метеоров учитывая читы
         for b in rock:
             if not reverseCheat and not slowCheat:
@@ -179,3 +178,26 @@ while True:
         for b in rock[:]:
             if b['rect'].top > WINDOWHEIGHT:
                 rock.remove(b)
+
+        # картинка на фон
+        screen.blit(backgroudImage, (0, 0))
+
+        # пишем значение очков
+        drawText('Score: %s' % (score), font, screen, 10, 0)
+        drawText('Top Score: %s' % (topScore), font, screen, 10, 40)
+
+        # Рисуем игорока
+        screen.blit(playerImage, playerRect)
+
+        # Рисуем метеоры
+        for b in rock:
+            screen.blit(b['surface'], b['rect'])
+
+        pygame.display.update()
+
+        # Проверяем столкнулся ли игрок с камнем
+        if playerHasHitRock(playerRect, rock):
+            if score > topScore:
+                topScore = score  # выставляем новое значение
+            break
+        mainClock.tick(FPS)
