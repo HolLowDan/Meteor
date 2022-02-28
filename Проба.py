@@ -15,3 +15,8 @@ BADDIEMINSPEED = 1
 BADDIEMAXSPEED = 8
 ADDNEWBADDIERATE = 6
 PLAYERMOVERATE = 5
+
+
+def terminate():
+    pygame.quit()
+    sys.exit()
