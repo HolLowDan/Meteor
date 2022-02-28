@@ -54,3 +54,6 @@ screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 pygame.display.set_caption('Метеор')
 pygame.mouse.set_visible(False)
 
+
+# Добовляем шрифт
+font = pygame.font.SysFont(None, 48)
