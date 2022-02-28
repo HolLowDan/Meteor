@@ -16,7 +16,7 @@ def waitForPlayerToPressKey():
             if event.type == QUIT:
                 terminate()
             if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:  # pressing escape quits
+                if event.key == K_ESCAPE:  # кнопка выхода
                     terminate()
                 return
 
@@ -45,4 +45,12 @@ ROCKMINSPEED = 1
 ROCKMAXSPEED = 8
 ADDNEWROCKRATE = 6
 PLAYERMOVERATE = 5
+
+
+# Начинаем игру
+pygame.init()
+mainClock = pygame.time.Clock()
+screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+pygame.display.set_caption('Метеор')
+pygame.mouse.set_visible(False)
 
